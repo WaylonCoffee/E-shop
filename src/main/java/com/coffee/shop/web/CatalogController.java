@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 /**
  * 商品控制器
  *
@@ -27,7 +31,7 @@ public class CatalogController {
     private CartService cartService;
 
     @Value("${page.size}")
-    private static Integer pageSize;
+    private Integer pageSize;
 
 
 
@@ -88,6 +92,7 @@ public class CatalogController {
     public Result getCategories(){
         return catalogService.getAllCategories();
     }
+
 
 
 }

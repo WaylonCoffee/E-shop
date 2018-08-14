@@ -69,6 +69,22 @@ public interface CartItemRepository {
     List<CartItem> getCartItemSelectedList(@Param("ids") String ids);
 
     /**
+     * 获取结账购物车子项集合
+     * @param id
+     * @return
+     */
+    @Select("SELECT id,quantity,spu FROM cart_item WHERE id = #{id}")
+    @Results({
+            @Result(id=true,column="id",property="id"),
+            @Result(column="spu",property="product",
+                    one=@One(
+                            select="com.coffee.shop.domain.ProductRepository.getProductBySpuWithoutImages",
+                            fetchType=FetchType.EAGER
+                    ))
+    })
+    CartItem getCartItemById(@Param("id") String id);
+
+    /**
      * 批量移除结账子项
      * @param ids
      * @return

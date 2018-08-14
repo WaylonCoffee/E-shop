@@ -1,7 +1,6 @@
 package com.coffee.shop.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -12,7 +11,6 @@ import java.util.Optional;
  * @date 2018/08/01
  **/
 @Data
-@NoArgsConstructor
 public class CartItem {
 
     /**
@@ -42,6 +40,13 @@ public class CartItem {
                 .map(x -> x.getSalePrice().multiply(new BigDecimal(quantity)))
                 .ifPresent(x -> this.total = x);
         return total;
+    }
+
+    public CartItem(){}
+
+    public CartItem(Product product,Integer quantity){
+        this.product = product;
+        this.quantity = quantity;
     }
 
 
